@@ -1,22 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
+from django.views.generic import FormView
+from .models import Converter
+from .forms import ConverterForm
 
-from .forms import CurrForm
+class ConverterPage(FormView):
+    template_name = 'converter.html'
+    success_url = '/result/'
+    form_class = ConverterForm
 
-def get_cur(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = CurrForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/result/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = CurrForm()
-
-    return render(request, 'form.html', {'form': form})
+    def form_valid(self, form):
+        return HttpResponse("Success.")
