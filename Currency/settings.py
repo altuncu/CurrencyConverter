@@ -25,7 +25,7 @@ SECRET_KEY = 'jdz8(veo_u(i60oilq$&%v+8ry*gi*au$01!yl#if=z1@1@15v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['safe-waters-68482.herokuapp.com']
 
 
 # Application definition
