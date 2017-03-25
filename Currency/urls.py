@@ -1,6 +1,6 @@
-from django.conf.urls import patterns, include, url
-from ads.views import ConverterPage
+from django.conf.urls import include, url
+from exchange.views import ConverterPage
 
-urlpatterns = patterns('',
-    url(r'^result/', ConverterPage.as_view()),
-)
+urlpatterns = [
+    url(r'^', ConverterPage.as_view())
+]

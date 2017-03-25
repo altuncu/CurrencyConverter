@@ -1,5 +1,6 @@
 from django import forms
-from .models import Converter
+from exchange.models import Converter
+from Currency.currencyConverter import convert
 
 CURRENCIES = (
     ('AUD', 'Australian Dollar'),
@@ -33,16 +34,20 @@ CURRENCIES = (
     ('USD', 'US Dollar'),
 )
 
-
 class ConverterForm(forms.ModelForm):
     error_css_class = 'error'
 
-    curr1 = forms.ChoiceField(choices=CURRENCIES, required=True )
-    curr2 = forms.ChoiceField(choices=CURRENCIES, required=True )
+    curr1 = forms.ChoiceField(choices=CURRENCIES, required=True, label='Currency1' )
+    curr2 = forms.ChoiceField(choices=CURRENCIES, required=True, label='Currency2' )
+
 
     class Meta:
         model = Converter
+        fields = '__all__'
 
         widgets = {
-            'amount': forms.TextInput(attrs={'placeholder': '1.0'})
+            'amount': forms.TextInput(attrs={'type': 'number'})
         }
+
+    def result(self):
+        return self.data['amount'] + " " + self.data['curr1'] + " is " + convert(self.cleaned_data['curr1'], self.cleaned_data['curr2'], self.cleaned_data['amount']) + " " + self.data['curr2']

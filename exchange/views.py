@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.views.generic import FormView
 from .models import Converter
-from .forms import ConverterForm
+from Currency.forms import ConverterForm
+from Currency.currencyConverter import convert
 
 class ConverterPage(FormView):
     template_name = 'converter.html'
@@ -9,4 +10,4 @@ class ConverterPage(FormView):
     form_class = ConverterForm
 
     def form_valid(self, form):
-        return HttpResponse("Success.")
+        return HttpResponse(form.result())

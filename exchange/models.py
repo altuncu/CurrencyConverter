@@ -37,6 +37,6 @@ CURRENCIES = (
 )
 
 class Converter(models.Model):
-    amount   = models.CharField(max_length=50)
+    amount   = models.FloatField(max_length=50)
     curr1    = models.CharField(max_length=3, choices=CURRENCIES)
     curr2    = models.CharField(max_length=3, choices=CURRENCIES)

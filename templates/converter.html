@@ -1,28 +1,9 @@
-{% extends 'base.html' %}
+
 
 {% block content %}
 <form action="/result/" method="post">{% csrf_token %}
-    <!-- amount -->
-    {{  form.non_field_errors }}
-    <div class="fieldWrapper">
-        {{ form.amount.errors }}
-        <label for="amount">Amount</label>
-        {{ form.amount }}
-    </div>
 
-    <!-- curr1 -->
-    <div class="fieldWrapper">
-        {{ form.category.errors }}
-        <label for="curr1">Currency 1</label>
-        {{ form.category }}
-    </div>
-
-    <!-- curr2 -->
-    <div class="fieldWrapper">
-        {{ form.location.errors }}
-        <label for="curr2">Currency 2</label>
-        {{ form.location }}
-    </div>
+    {{ form }}
 
     <button type="submit">
         <i class="fa fa-thumb-tack"></i> Convert

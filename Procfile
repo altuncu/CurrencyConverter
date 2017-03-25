@@ -1,1 +1,1 @@
-web: gunicorn CurrencyConverter.wsgi
+web: gunicorn Currency.wsgi
